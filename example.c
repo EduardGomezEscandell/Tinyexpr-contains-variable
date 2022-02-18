@@ -1,10 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 #include "contains_variable.h"
+
+
+enum vars {X, Y, Z, T, NVARS};
+
+void Help()
+{
+    printf("Usage: example.out (--help|expression)\n");
+    printf("  --help: Prints this message\n");
+    printf("  expression: Finds if the expression depends on x,y,z or t\n");
+}
+
 
 int main(int argc, char ** argv)
 {
     if(argc != 2)
     {
+        Help();
         exit(EXIT_FAILURE);
+    }
+
+    if(strncmp(argv[1], "--help", 7) == 0)
+    {
+        Help();
+        exit(EXIT_SUCCESS);
     }
 
     char const* str_expr = argv[1];
@@ -27,10 +49,16 @@ int main(int argc, char ** argv)
 
     te_expr * expr = te_compile(str_expr, vars, NVARS, &err_code);
 
-    int contains_x = contains_variable(expr, &vars[0]);
-    int contains_y = contains_variable(expr, &vars[1]);
-    int contains_z = contains_variable(expr, &vars[2]);
-    int contains_t = contains_variable(expr, &vars[3]);
+    if(err_code)
+    {
+        fprintf(stderr, "Failed to compile expression!\n");
+        exit(EXIT_FAILURE);
+    }
 
-    printf("Contains...\nx:%d\ny:%d\nz:%d\nt:%d\n", contains_x, contains_y, contains_z, contains_t);
+    te_variable const* spatial_variables[3] = {&vars[X], &vars[Y], &vars[Z]};
+
+    int contains_space = contains_variables(expr, spatial_variables, 3);
+    int contains_t = contains_variable(expr, &vars[T]);
+
+    printf("Contains...\n - Space: %d\n - Time: %d\n", contains_space, contains_t);
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-enum {NVARS=4};
 
-int contains_variable(const te_expr *n, const te_variable *v);
+int contains_variable(te_expr const* expression, te_variable const* variable);
+
+int contains_variables(te_expr const* expression, te_variable const* variable_array[], size_t size);
