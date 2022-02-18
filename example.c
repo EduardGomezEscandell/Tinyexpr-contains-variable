@@ -58,7 +58,7 @@ int main(int argc, char ** argv)
     te_variable const* spatial_variables[3] = {&vars[X], &vars[Y], &vars[Z]};
 
     int contains_space = contains_variables(expr, spatial_variables, 3);
-    int contains_t = contains_variable(expr, &vars[T]);
+    int contains_time = contains_variable(expr, &vars[T]);
 
-    printf("Contains...\n - Space: %d\n - Time: %d\n", contains_space, contains_t);
+    printf("Contains...\n - Space: %d\n - Time: %d\n", contains_space, contains_time);
 }
