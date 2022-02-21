@@ -61,4 +61,6 @@ int main(int argc, char ** argv)
     int contains_time = contains_variable(expr, &vars[T]);
 
     printf("Contains...\n - Space: %d\n - Time: %d\n", contains_space, contains_time);
+
+    te_free(expr);
 }
