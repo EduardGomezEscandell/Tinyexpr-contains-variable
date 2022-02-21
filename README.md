@@ -9,4 +9,3 @@ Run `example.out "50*x"` to see an example
 # WIP
 Pending:
 - Unit tests
-- Proper makefile
