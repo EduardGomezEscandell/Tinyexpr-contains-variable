@@ -25,8 +25,7 @@ int item_in_variable_list(double const* item, te_variable const* array[], const 
 
 int contains_variable(te_expr const* n, te_variable const* v)
 {
-     te_variable const* arr[] = {v};
-     return contains_variables(n, arr, 1);
+     return contains_variables(n, &v, 1);
 }
 
 
