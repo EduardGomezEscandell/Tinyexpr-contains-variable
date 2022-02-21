@@ -49,8 +49,12 @@ int main(int argc, char ** argv)
 
     te_expr * expr = te_compile(str_expr, vars, NVARS, &err_code);
 
+    printf("Expression: %s\n", str_expr);
     if(err_code)
     {
+        fprintf(stderr, "           ");
+        for(int i=0; i<err_code-1; ++i) fprintf(stderr, " ");
+        fprintf(stderr, "^ error is near here\n");
         fprintf(stderr, "Failed to compile expression!\n");
         exit(EXIT_FAILURE);
     }
