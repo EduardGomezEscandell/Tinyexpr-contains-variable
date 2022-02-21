@@ -10,4 +10,3 @@ Run `example.out "50*x"` to see an example
 Pending:
 - Unit tests
 - Proper makefile
-- Proper sub-repository
